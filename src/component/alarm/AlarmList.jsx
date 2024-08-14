@@ -7,6 +7,7 @@ export const AlarmList = () => {
   // 알람 데이터 받아오기
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useGetAlarmAll();
+  console.log(data);
 
   // 감시할 요소 저장할 ref
   const nextFetchTargetRef = useRef(null);
@@ -29,6 +30,7 @@ export const AlarmList = () => {
           .flat()
           .map((item) => (
             <AlarmItem
+              userId={item.from.id}
               id={item.notificationId}
               text={item.message}
               createdAt={item.createdAt}

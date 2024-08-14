@@ -13,6 +13,12 @@ export const getAllFeed = async (cursorValue, page) => {
   return data;
 };
 
+// 특정 게시물 가져오는 api
+export const getFeed = async (id) => {
+  let data = await apiClient.get(`/api/v1/post/one/${id}`);
+  return data?.data;
+};
+
 // 게시물 이미지 가져오는 api
 export const getFeedImg = async (postId) => {
   return apiClient.get(`/api/v1/post/${postId}/media`);

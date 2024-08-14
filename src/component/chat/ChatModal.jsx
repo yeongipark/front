@@ -24,6 +24,7 @@ const ChatModal = ({
   setFalseLoveNum,
   falseLike,
   setFalseLike,
+  page,
 }) => {
   // 댓글 정보 가져오는 쿼리
   const { data, isLoading, isError } = useQuery({
@@ -58,6 +59,9 @@ const ChatModal = ({
 
   // 모달 바깥 클릭했을 때 닫는 코드
   const handleClickBackground = (e) => {
+    if (page) {
+      return;
+    }
     if (e.target == backgroundRef.current) {
       handleChatButtonClick();
       setOnSetting(false);
@@ -68,7 +72,7 @@ const ChatModal = ({
 
   return (
     <div
-      className="ChatModal ChatModal-animation"
+      className={`${page ? "ChatPage" : "ChatModal"} ChatModal-animation`}
       onClick={handleClickBackground}
       ref={backgroundRef}
     >
@@ -103,12 +107,14 @@ const ChatModal = ({
             Icon={faX}
             handleSettingButtonClick={handleSettingButtonClick}
           ></UserInfo>
-          <div className="ChatModalCloseButton">
-            <CloseButton
-              size={20}
-              onCloseButton={handleChatButtonClick}
-            ></CloseButton>
-          </div>
+          {page || (
+            <div className="ChatModalCloseButton">
+              <CloseButton
+                size={20}
+                onCloseButton={handleChatButtonClick}
+              ></CloseButton>
+            </div>
+          )}
         </div>
         <div className="Feed-texts">
           {imgList?.length !== 0 ? (

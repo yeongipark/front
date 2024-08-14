@@ -20,6 +20,7 @@ import { ProjectCalendar } from "./pages/project/ProjectCalendar";
 import { ProjectNav } from "./component/nav/ProjectNav";
 import { Profile } from "./pages/Profile";
 import SearchPost from "./component/search/SearchPost";
+import Post from "./pages/Post";
 import { NotFound } from "./pages/NotFound";
 
 import ProjectGantt from "./pages/project/ProjectGantt";
@@ -84,7 +85,11 @@ function App() {
             <Route
               path="Message"
               element={<ProtectedRoute element={Message} />}
-            />{" "}
+            />
+            <Route
+              path="post/:id"
+              element={<ProtectedRoute element={Post} />}
+            />
             {/* <Route path="Alarm" element={<ProtectedRoute element={Alarm} />} /> */}
           </Route>
           {/* 프로젝트 라우터 */}
