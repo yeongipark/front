@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { Participants } from "../../component/project/Participants";
 import { ProjectInfo } from "../../component/project/ProjectInfo";
 import { DeleteProject } from "../../component/project/DeleteProject";
-
+import { BaseUrl } from "../../util/BaseUrl";
 export const ProjectCalendar = () => {
   const myId = localStorage.getItem("memberId");
   const {
@@ -44,6 +44,9 @@ export const ProjectCalendar = () => {
 
   // 프로젝트 삭제 창
   const [onDelete, setOnDelete] = useState(false);
+
+  //로딩 상태
+  const [isLoading, setIsLoading] = useState(false);
 
   // 배경 클릭하면 세팅 닫기
   const settingRef = useRef(null);
@@ -115,6 +118,35 @@ export const ProjectCalendar = () => {
     },
   ];
 
+  const createScheduleByAI = async () => {
+    setIsLoading(true);
+
+    const accessToken = localStorage.getItem("accessToken");
+    console.log(`Bearer ${accessToken}`);
+    console.log(projectId);
+
+    try {
+      const response = await fetch(
+        `${BaseUrl}/api/v1/plan/openai-generate/${projectId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
+      location.reload();
+    }
+  };
+
   useEffect(() => {
     setProjectId(projectId);
     setProjectTitle(searchParams.get("title"));
@@ -122,6 +154,14 @@ export const ProjectCalendar = () => {
 
   return (
     <div className="ProjectCalendar" onClick={onBackgroundClick}>
+      {isLoading && (
+        <div className="loading_background">
+          <div className="loading_modal">
+            <div className="loading_spinner"></div>
+          </div>
+        </div>
+      )}
+
       {/* 프로젝트 삭제 모달 */}
       {onDelete ? <DeleteProject setOnDelete={setOnDelete} /> : null}
 
@@ -151,11 +191,15 @@ export const ProjectCalendar = () => {
           </button>
           {title}
         </h2>
-        <div>
+        <div className="calendar_actions">
+          <button className="action" onClick={createScheduleByAI}>
+            AI일정 생성
+          </button>
           <button
             onClick={() => {
               setOnCreate(true);
             }}
+            className="action"
           >
             새 일정 만들기
           </button>
