@@ -1,6 +1,7 @@
 .ProjectCalendar {
   width: 80%;
   margin: auto;
+  position: relative;
 }
 
 .ProjectCalendar-top {
@@ -44,4 +45,53 @@
   position: absolute;
   z-index: 100;
   top: 40px;
+}
+
+.calendar_actions {
+  display: flex;
+  gap: 1rem;
+}
+.action:first-child {
+  background-color: #4862d2;
+}
+.loading_background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.loading_modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
+  text-align: center;
+  z-index: 11;
+}
+
+.loading_spinner {
+  margin-top: 1rem;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
