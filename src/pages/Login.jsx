@@ -55,10 +55,10 @@ export default function Login() {
 
       <div className="login_col">
         <div className="login__header">
-          <p>대충 아무거나 적었음</p>
+          <p>기업 협업 플렛폼</p>
         </div>
         <div className="login__section">
-          <p>뭐라 적어야할까.</p>
+          <p>CNS</p>
           <div className="login__section_form">
             <RegistrationModal open={open} handleClose={handleClose} />
             <Input
