@@ -40,8 +40,6 @@ export const MentionTextarea = ({
       }
     }
 
-    console.log(hashList?.current, mentionList?.current);
-
     // 멘션
     if (value[value.length - 1] == " ") {
       setOnMention(false);
@@ -72,7 +70,6 @@ export const MentionTextarea = ({
     if (!value.includes("#")) {
       setOnHash(false);
       setHashValue("");
-      return;
     }
 
     if (!value.includes("@")) {

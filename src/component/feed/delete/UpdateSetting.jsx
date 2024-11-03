@@ -37,40 +37,34 @@ const CreateSetting = ({ onSetIsChat, isChat }) => {
       </div>
       <div className="radio">
         <div className={className}>
-          <table>
-            <tr>
-              <label htmlFor="open">
-                <td>채팅 열기</td>
-              </label>
-              <td className="empty"></td>
-              <td>
-                <input
-                  checked={isChat}
-                  type="radio"
-                  id="open"
-                  name="setting"
-                  value={true}
-                  onChange={onChange}
-                />
-              </td>
-            </tr>
-            <tr>
-              <label htmlFor="close">
-                <td>채팅 닫기</td>
-              </label>
-              <td className="empty"></td>
-              <td>
-                <input
-                  checked={!isChat}
-                  type="radio"
-                  name="setting"
-                  id="close"
-                  value={false}
-                  onChange={onChange}
-                />
-              </td>
-            </tr>
-          </table>
+          <div className="radio-item">
+            <label htmlFor="open">채팅 열기</label>
+            <div>
+              <input
+                checked={isChat}
+                type="radio"
+                id="open"
+                name="setting"
+                value={true}
+                onChange={onChange}
+              />
+            </div>
+          </div>
+          <div className="radio-item">
+            <label htmlFor="close">
+              <td>채팅 닫기</td>
+            </label>
+            <div>
+              <input
+                checked={!isChat}
+                type="radio"
+                name="setting"
+                id="close"
+                value={false}
+                onChange={onChange}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
