@@ -175,16 +175,18 @@ const ChatUserCard = ({
   return (
     <div style={{ marginBottom: "15px" }} onClick={onClick}>
       <div className="ChatUserCard">
-        <img
-          id="ChatUserCard-img"
-          height={`${imgWidth}px`}
-          className={imgClassName}
-          src={img}
-          alt="프로필사진"
-          onClick={() => {
-            onProfileCilick();
-          }}
-        />
+        <div>
+          <img
+            id="ChatUserCard-img"
+            height={`${imgWidth}px`}
+            className={imgClassName}
+            src={img}
+            alt="프로필사진"
+            onClick={() => {
+              onProfileCilick();
+            }}
+          />
+        </div>
         <div className={textClassName}>
           <span className="ChatUserCard-userName" onClick={onProfileCilick}>
             {userName}
