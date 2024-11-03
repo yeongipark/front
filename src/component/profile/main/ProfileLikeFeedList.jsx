@@ -27,6 +27,8 @@ export const ProfileLikeFeedList = ({ memberId }) => {
 
   list = list?.map((item1) => {
     return item1.map((item) => ({
+      mentions: item.mentions,
+      hashtags: item.hashtags,
       id: item.id,
       content: item.content,
       isCommentEnabled: item.isCommentEnabled,
@@ -50,6 +52,8 @@ export const ProfileLikeFeedList = ({ memberId }) => {
   }
 
   const feedList = spreadList?.map((item) => ({
+    mentions: item.mentions,
+    hashtags: item.hashtags,
     memberId: item.memberId,
     id: item.id,
     content: item.content,
