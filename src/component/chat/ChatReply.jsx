@@ -42,6 +42,7 @@ export const ChatReply = ({ replyNum, onClickReply, postId, commentId }) => {
         >
           {data?.data?.map((item) => (
             <ChatReplyUserCard
+              key={item.postMember.id}
               mentions={item.mentions}
               id={item.postMember.id}
               liked={item.liked}

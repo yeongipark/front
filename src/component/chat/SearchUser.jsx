@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import "../../styles/chat/searchUser.scss";
 import UserCard from "../UserCard";
 import apiClient from "../../util/BaseUrl";
-import axios from "axios";
 
 export const SearchUser = ({ onMentionClick, metionValue }) => {
   const [selectedIndex, setSelectedIndex] = useState(0); // 현재 선택된 항목의 인덱스
@@ -14,7 +13,6 @@ export const SearchUser = ({ onMentionClick, metionValue }) => {
       let data = await apiClient.get(
         `/api/v1/member/search?nickname=${metionValue}`
       );
-      console.log(data);
       setUsers(
         data.data.map((item) => ({
           userName: item.nickname,
@@ -76,6 +74,7 @@ export const SearchUser = ({ onMentionClick, metionValue }) => {
   return (
     <div className="SearchUser">
       <ul>
+        {users.length ? "" : "검색결과 없음"}
         {users.map((user, index) => (
           <li
             key={index}

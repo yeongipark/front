@@ -78,7 +78,6 @@ export const MentionInput = ({
     if (!value.includes("#")) {
       setOnHash(false);
       setHashValue("");
-      return;
     }
 
     if (!value.includes("@")) {

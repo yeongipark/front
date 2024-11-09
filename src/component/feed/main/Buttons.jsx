@@ -78,9 +78,6 @@ const Buttons = ({
       >
         <AiOutlineMessage></AiOutlineMessage>
       </div>
-      <div className="buttons">
-        <FaRegPaperPlane></FaRegPaperPlane>
-      </div>
     </div>
   );
 };
