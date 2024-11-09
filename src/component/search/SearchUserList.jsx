@@ -9,16 +9,20 @@ const SearchUserList = ({ searchQuery, tap, onResultsFetched }) => {
 
   const nav = useNavigate();
 
-  useEffect( () => {
-    if (searchQuery.trim() !== "") { // 검색어가 빈 문자열이 아닌 경우에만 실행
-      const url = tap ? `api/v1/member/search?nickname=${searchQuery}` : `/api/v1/hashtag/${searchQuery}`;
-      console.log("검색시작");
-        apiClient.get(url)
-      
-      .then(response => {
+  useEffect(() => {
+    if (searchQuery.trim() !== "") {
+      // 검색어가 빈 문자열이 아닌 경우에만 실행
+      const url = tap
+        ? `api/v1/member/search?nickname=${searchQuery}`
+        : `/api/v1/hashtag/${searchQuery}`;
+      apiClient
+        .get(url)
+
+        .then((response) => {
+          console.log(url);
           const data = response.data;
           console.log(data);
-          console.log(tap)
+          console.log(tap);
           if (tap) {
             setUserList(data || []); // 데이터가 없을 경우 빈 배열로 초기화
             onResultsFetched(data || []); // 데이터가 없을 경우 빈 배열로 초기화
@@ -27,7 +31,7 @@ const SearchUserList = ({ searchQuery, tap, onResultsFetched }) => {
             onResultsFetched(data || []); // 데이터가 없을 경우 빈 배열로 초기화
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("Error fetching data:", error);
         });
     }
@@ -35,7 +39,7 @@ const SearchUserList = ({ searchQuery, tap, onResultsFetched }) => {
 
   return (
     <div className="SearchUserList width-370">
-  {tap &&
+      {tap &&
         userList.map((item) => (
           <UserCard
             key={item.memberId}
@@ -43,21 +47,22 @@ const SearchUserList = ({ searchQuery, tap, onResultsFetched }) => {
             userName={item.nickname}
             width={"width-40"}
             height={"height-40"}
-            img={item.profile?item.profile:"/public/image/dp.jpg"}
+            img={item.profile ? item.profile : "/public/image/dp.jpg"}
           />
-        ))
-        }
+        ))}
 
       {!tap &&
         hashTagList.map((item) => (
           <UserCard
-          key={item.memberId}
-          onClick={() => nav(`/SearchPost`,{state:{hashtag: item.name}})}
-          userName={item.name}
-          width={"width-40"}
-          height={"height-40"}
-          img={"/public/image/images.png"}
-        />
+            key={item.memberId}
+            onClick={() =>
+              nav(`/SearchPost`, { state: { hashtag: item.name } })
+            }
+            userName={item.name}
+            width={"width-40"}
+            height={"height-40"}
+            img={"/public/image/images.png"}
+          />
         ))}
     </div>
   );
