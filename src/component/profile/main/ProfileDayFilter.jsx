@@ -24,8 +24,6 @@ export const ProfileDayFilter = ({
     </button>
   ));
 
-  console.log(startDate);
-
   return (
     <div>
       <DatePicker

@@ -161,19 +161,15 @@ export const useGetMemberFeed = (memberId, filterType, startDate, endDate) => {
         pageParam.pageParam
       );
     },
-    getNextPageParam: (lastPage, pages) => {
-      return lastPage &&
-        Array.isArray(lastPage.data) &&
-        lastPage.data.length > 0
-        ? {
-            pageParam: lastPage.data[lastPage.data.length - 1].id,
-          }
-        : {
-            pageParam: false,
-          };
+    getNextPageParam: (lastPage) => {
+      const lastId = lastPage?.data?.length
+        ? lastPage.data[lastPage.data.length - 1].id
+        : -1;
+      if (lastPage.data.length !== 10) return undefined;
+      return lastId !== -1 ? { pageParam: lastId } : undefined;
     },
     staleTime: 1000 * 60 * 5,
-    retry: 0,
+    retry: 3,
     refetchOnMount: true,
     refetchOnReconnect: true,
     refetchOnWindowFocus: true,

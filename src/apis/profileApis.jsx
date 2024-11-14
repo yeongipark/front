@@ -6,13 +6,8 @@ export const getMemberFeed = async (
   filterType,
   startDate,
   endDate,
-  cursorValue,
-  likeCnt
+  cursorValue
 ) => {
-  if (cursorValue === false) {
-    return { data: [] };
-  }
-
   if (filterType == "oldest") {
     if (cursorValue == 0) {
       return apiClient.get(
@@ -22,7 +17,8 @@ export const getMemberFeed = async (
       `/api/v1/member/${memberId}/post?filter=${filterType}&cursorValue=${cursorValue}`;
     }
   }
-  if (startDate == 0 || endDate == 0) {
+
+  if (filterType === "newest" || filterType === "like") {
     if (cursorValue == 0) {
       return apiClient.get(
         `/api/v1/member/${memberId}/post?filter=${filterType}`

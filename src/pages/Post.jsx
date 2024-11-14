@@ -127,6 +127,7 @@ export const Post = () => {
               />
             </div>
           )}
+
           <ChatModal
             profile={feedList.profile}
             imgList={imgData}
