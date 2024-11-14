@@ -71,7 +71,13 @@ export const ProfileLikeFeedList = ({ memberId }) => {
   return (
     <div
       onScroll={handleScroll}
-      style={{ height: "100vh", overflow: "auto", padding: "20px" }}
+      style={{
+        height: "100vh",
+        overflow: "auto",
+        padding: "20px",
+        maxWidth: "520px",
+        width: "100%",
+      }}
     >
       {feedList?.map((item, idx) => (
         <Feed feedList={item} key={item.id}></Feed>
