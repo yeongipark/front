@@ -4,6 +4,7 @@ import Feed from "../../feed/main/Feed";
 import { ProfileDayFilter } from "./ProfileDayFilter";
 
 export const ProfileMyFeedList = ({ memberId, filterType, start, end }) => {
+  // const [filter, setFilter] = useState('newest');
   let filter;
   if (filterType == "최신순") {
     filter = "newest";
@@ -28,7 +29,6 @@ export const ProfileMyFeedList = ({ memberId, filterType, start, end }) => {
 
     if (scrollHeight - scrollTop <= clientHeight + 50) {
       if (hasNextPage && !isFetchingNextPage) {
-        console.log("게시물 불러오기");
         fetchNextPage();
       }
     }

@@ -6,9 +6,9 @@ export const getMemberFeed = async (
   filterType,
   startDate,
   endDate,
-  cursorValue,
-  likeCnt
+  cursorValue
 ) => {
+  console.log(cursorValue);
   if (cursorValue === false) {
     return { data: [] };
   }
